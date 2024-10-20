@@ -14,26 +14,37 @@ namespace DiarioDeClasse.API.Controllers
     [Route("api/[controller]")]
     public class AuthController : ControllerBase
     {
-        private readonly AuthService _authService;
+        private readonly AuthService authService;
 
         public AuthController(AuthService authService)
         {
-            _authService = authService;
+            this.authService = authService;
         }
 
         [HttpPost("login")]
         public async Task<IActionResult> Login([FromBody] LoginDTO request)
         {
-            var usuario = await _authService.AuthenticateAsync(request.Username, request.Password);
+            var usuario = await authService.AuthenticateAsync(request.Username, request.Password);
 
             if (usuario == null)
             {
                 return Unauthorized();
             }
 
-            var token = _authService.GenerateJwtToken(usuario);
+            var token = authService.GenerateJwtToken(usuario);
 
             return Ok(new { Token = token });
+        }
+
+        [HttpPost]
+        [Route("VerificarToken")]
+        public IActionResult ValidataToken([FromBody] string token)
+        {
+            bool valid = authService.ValidateToken(token);
+            if (valid)
+                return Ok(valid);
+
+            return Unauthorized();
         }
     }
 }
