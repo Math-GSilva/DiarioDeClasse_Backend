@@ -1,5 +1,6 @@
 ﻿using DiarioDeClasse.Domain.DTOs.Auth;
-using DiarioDeClasse.Domain.Service.Auth;
+using DiarioDeClasse.Domain.Entity;
+using DiarioDeClasse.Domain.Service;
 using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;

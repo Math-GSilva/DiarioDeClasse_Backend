@@ -1,5 +1,6 @@
 using DiarioDeClasse.Domain.Interface;
-using DiarioDeClasse.Domain.Service.Auth;
+using DiarioDeClasse.Domain.Interface.Services;
+using DiarioDeClasse.Domain.Service;
 using DiarioDeClasse.Infra;
 using DiarioDeClasse.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -16,9 +17,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<UsuarioDbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<AuthService>();
-
-var key = Encoding.ASCII.GetBytes("chave_super_secreta");
 
 builder.Services.AddAuthentication(options =>
 {
@@ -29,13 +29,11 @@ builder.Services.AddAuthentication(options =>
 {
     options.TokenValidationParameters = new TokenValidationParameters
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
+        ValidateIssuer = false,
+        ValidateAudience = false,
         ValidateLifetime = true,
-        ValidateIssuerSigningKey = true,
-        ValidIssuer = "seuIssuer",
-        ValidAudience = "seuAudience",
-        IssuerSigningKey = new SymmetricSecurityKey(key),
+        ValidateIssuerSigningKey = false,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
         ClockSkew = TimeSpan.Zero
     };
 });

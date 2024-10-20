@@ -6,7 +6,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace DiarioDeClasse.Domain.Service.Auth
+namespace DiarioDeClasse.Domain.Service
 {
     public class AuthService
     {
@@ -16,7 +16,7 @@ namespace DiarioDeClasse.Domain.Service.Auth
         public AuthService(IUserRepository usuarioRepository, IConfiguration config)
         {
             _usuarioRepository = usuarioRepository;
-            _jwtKey = config["JwtConfig:Key"];
+            _jwtKey = config["Jwt:Key"];
         }
 
         public async Task<User?> AuthenticateAsync(string username, string password)
@@ -35,18 +35,16 @@ namespace DiarioDeClasse.Domain.Service.Auth
         {
             var claims = new[]
             {
-                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Sub, user.Email),
-                new Claim(System.IdentityModel.Tokens.Jwt.JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
+                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 
             var key = new SymmetricSecurityKey(Encoding.ASCII.GetBytes(_jwtKey));
             var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
             var token = new JwtSecurityToken(
-                issuer: "seuIssuer",
-                audience: "seuAudience",
                 claims: claims,
-                expires: DateTime.Now.AddHours(1),
+                expires: DateTime.Now.AddHours(12),
                 signingCredentials: creds
             );
 
