@@ -1,0 +1,6 @@
+@DiarioDeClasse.API_HostAddress = http://localhost:5193
+
+GET {{DiarioDeClasse.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
