@@ -1,5 +1,5 @@
 ﻿using DiarioDeClasse.Domain.Entity;
-using DiarioDeClasse.Domain.Interface;
+using DiarioDeClasse.Domain.Interface.Repository;
 using DiarioDeClasse.Infra;
 using Microsoft.EntityFrameworkCore;
 using System;

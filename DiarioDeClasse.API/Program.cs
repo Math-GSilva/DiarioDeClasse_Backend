@@ -1,4 +1,4 @@
-using DiarioDeClasse.Domain.Interface;
+using DiarioDeClasse.Domain.Interface.Repository;
 using DiarioDeClasse.Domain.Interface.Services;
 using DiarioDeClasse.Domain.Service;
 using DiarioDeClasse.Infra;

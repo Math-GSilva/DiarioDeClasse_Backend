@@ -1,5 +1,5 @@
 ﻿using DiarioDeClasse.Domain.Entity;
-using DiarioDeClasse.Domain.Interface;
+using DiarioDeClasse.Domain.Interface.Repository;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System.IdentityModel.Tokens.Jwt;
@@ -67,7 +67,7 @@ namespace DiarioDeClasse.Domain.Service
                 handler.ValidateToken(token, parameters, out SecurityToken validatedToken);
                 return true;
             }
-            catch (SecurityTokenException)
+            catch
             {
                 return false;
             }
