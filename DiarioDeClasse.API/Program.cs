@@ -10,6 +10,15 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll",
+        builder => builder
+            .AllowAnyOrigin()    // Permite qualquer origem
+            .AllowAnyMethod()    // Permite qualquer método HTTP (GET, POST, PUT, DELETE, etc.)
+            .AllowAnyHeader());  // Permite qualquer cabeçalho
+});
+
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

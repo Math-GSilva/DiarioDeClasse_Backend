@@ -1,0 +1,33 @@
+services:
+  database:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=SenhaDoBancoDeDados01
+    ports:
+      - "1433:1433" 
+    networks:
+      - my_network
+    volumes:
+      - db_data:/var/opt/mssql 
+
+  api:
+    build:
+      context: .. 
+      dockerfile: DiarioDeClasse.API/Dockerfile
+    image: api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "8080:8080" 
+    networks:
+      - my_network
+    depends_on:
+      - database
+
+networks:
+  my_network:
+    driver: bridge
+
+volumes:
+  db_data:

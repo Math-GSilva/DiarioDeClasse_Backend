@@ -11,7 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiarioDeClasse.Infra", "Dia
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiarioDeClasse.Repository", "DiarioDeClasse.Repository\DiarioDeClasse.Repository.csproj", "{96D550CF-C1AC-48E4-93B6-96D7415EB4DA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiarioDeClasse.Test", "DiarioDeClasse.Test\DiarioDeClasse.Test.csproj", "{5BAA9C1E-401F-41B5-8CC7-1514F62A2A22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiarioDeClasse.Test", "DiarioDeClasse.Test\DiarioDeClasse.Test.csproj", "{5BAA9C1E-401F-41B5-8CC7-1514F62A2A22}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{4D1D416D-0850-44FB-A3D6-56838368AE07}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{5BAA9C1E-401F-41B5-8CC7-1514F62A2A22}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BAA9C1E-401F-41B5-8CC7-1514F62A2A22}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BAA9C1E-401F-41B5-8CC7-1514F62A2A22}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4D1D416D-0850-44FB-A3D6-56838368AE07}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D1D416D-0850-44FB-A3D6-56838368AE07}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D1D416D-0850-44FB-A3D6-56838368AE07}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D1D416D-0850-44FB-A3D6-56838368AE07}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
