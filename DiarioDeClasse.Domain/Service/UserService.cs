@@ -20,7 +20,8 @@ namespace DiarioDeClasse.Domain.Service
         public async Task<User?> SaveUsuarioAsync(User usuario)
         {
             usuario.Password = BCrypt.Net.BCrypt.HashPassword(usuario.Password);
-            return await userRepository.AddAsync(usuario);
+            var user = await userRepository.AddAsync(usuario);
+            return user;
         }
     }
 }

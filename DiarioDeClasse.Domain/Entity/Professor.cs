@@ -4,8 +4,8 @@ using DiarioDeClasse.Domain.Interface;
 
 namespace DiarioDeClasse.Domain.Entity
 {
-    [Table("Usuarios")]
-    public class User : IEntity<int>
+    [Table("Professores")]
+    public class Professor : IEntity<int>
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -16,14 +16,10 @@ namespace DiarioDeClasse.Domain.Entity
         public string? Nome { get; set; }
 
         [Required]
-        [MaxLength(150)]
-        public string? Email { get; set; }
+        [MaxLength(100)]
+        public string? Disciplina { get; set; }
 
-        [Required]
-        public string? Password { get; set; }
-
-        [Required]
-        public string? Tipo { get; set; } // "Administrador" ou "Professor"
-
+        [ForeignKey("UsuarioId")]
+        public int UsuarioId { get; set; }
     }
 }

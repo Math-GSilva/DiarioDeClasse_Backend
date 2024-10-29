@@ -12,7 +12,7 @@ namespace DiarioDeClasse.Repository
 {
     public class UserRepository : BaseRepository<User, int>, IUserRepository
     {
-        public UserRepository(UsuarioDbContext db)
+        public UserRepository(DiarioDeClasseContext db)
             : base(db)
         {
         }
@@ -25,7 +25,8 @@ namespace DiarioDeClasse.Repository
 
         public async Task<User?> AddAsync(User usuario)
         {
-            return await Add(usuario);
+            var user = await Add(usuario);
+            return user;
         }
     }
 }

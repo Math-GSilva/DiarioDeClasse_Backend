@@ -23,7 +23,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<UsuarioDbContext>(options =>
+builder.Services.AddDbContext<DiarioDeClasseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
