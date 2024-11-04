@@ -18,9 +18,9 @@ namespace DiarioDeClasse.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Add([FromBody] User usuario)
+        public async Task<IActionResult> Add([FromBody] User usuario)
         {
-            return Ok(userService.SaveUsuarioAsync(usuario));
+            return Ok(await userService.SaveUsuarioAsync(usuario));
         }
     }
 }
