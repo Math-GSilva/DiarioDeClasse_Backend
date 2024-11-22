@@ -72,5 +72,28 @@ namespace DiarioDeClasse.Domain.Service
                 return false;
             }
         }
+
+        public async Task<bool> IsAdm(string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            try
+            {
+                bool isAdm = false;
+                var jwtToken = handler.ReadJwtToken(token);
+                var emailClaim = jwtToken.Claims.FirstOrDefault(c => c.Type == JwtRegisteredClaimNames.Sub);
+
+                if(emailClaim != null)
+                {
+                    var user = await _usuarioRepository.GetByUsernameAsync(emailClaim.Value);
+                    isAdm = (user?.Tipo ?? "") == "adm";
+                }
+
+                return isAdm;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
     }
 }

@@ -46,5 +46,20 @@ namespace DiarioDeClasse.API.Controllers
 
             return Unauthorized();
         }
+
+        [HttpPost]
+        [Route("IsAdmnistrador")]
+        public async Task<IActionResult> IsAdm([FromBody] string token)
+        {
+            bool valid = authService.ValidateToken(token);
+            
+            if (valid)
+            {
+                bool isAdm = await authService.IsAdm(token);
+                return Ok(isAdm);
+            }
+
+            return Unauthorized();
+        }
     }
 }
