@@ -20,10 +20,13 @@ namespace DiarioDeClasse.Domain.Entity
         public string? Email { get; set; }
 
         [Required]
+        public DateTime DataNascimento { get; set; }
+
+        [Required]
         public string? Password { get; set; }
 
         [Required]
-        public string? Tipo { get; set; } // "Administrador" ou "Professor"
+        public string? Tipo { get; set; }
 
     }
 }

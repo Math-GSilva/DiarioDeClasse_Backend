@@ -10,7 +10,6 @@ namespace DiarioDeClasse.Infra
         }
 
         public DbSet<User> Usuarios { get; set; }
-        public DbSet<Professor> Professores { get; set; }
         public DbSet<Aluno> Alunos { get; set; }
         public DbSet<Turma> Turmas { get; set; }
         public DbSet<AlunoTurma> AlunoTurmas { get; set; }
@@ -30,12 +29,11 @@ namespace DiarioDeClasse.Infra
                 entity.Property(u => u.Tipo).IsRequired();
             });
 
-            modelBuilder.Entity<Professor>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
-                entity.ToTable("Professores");
+                entity.ToTable("Usuarios");
                 entity.HasKey(p => p.Id);
                 entity.Property(p => p.Nome).IsRequired().HasMaxLength(150);
-                entity.Property(p => p.Disciplina).IsRequired().HasMaxLength(100);
             });
 
             modelBuilder.Entity<Aluno>(entity =>
@@ -53,7 +51,7 @@ namespace DiarioDeClasse.Infra
                 entity.HasKey(t => t.Id);
                 entity.Property(t => t.Nome).IsRequired().HasMaxLength(100);
                 entity.Property(t => t.AnoLetivo).IsRequired();
-                entity.HasOne<Professor>()
+                entity.HasOne<User>()
                       .WithMany()
                       .HasForeignKey(t => t.ProfessorId);
             });

@@ -1,11 +1,10 @@
 ﻿using DiarioDeClasse.Domain.Entity;
+using DiarioDeClasse.Domain.Interface;
 using DiarioDeClasse.Domain.Interface.Repository;
 using DiarioDeClasse.Infra;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DiarioDeClasse.Repository
@@ -17,16 +16,41 @@ namespace DiarioDeClasse.Repository
         {
         }
 
-        public async Task<User?> GetByUsernameAsync(string username)
+        public async Task<User?> GetByIdWithIncludesAsync(int id, IEnumerable<string> includes)
         {
-            var results = await GetAll();
-            return results.FirstOrDefault(usuario => usuario.Email.Equals(username, StringComparison.OrdinalIgnoreCase));
+            return await Get(id, includes);
         }
 
-        public async Task<User?> AddAsync(User usuario)
+        public async Task<User?> GetById(int id)
         {
-            var user = await Add(usuario);
-            return user;
+            return await Get(id);
+        }
+
+        public async Task<User?> GetByEmailAsync(string email)
+        {
+            var results = await GetAll();
+            return results.FirstOrDefault(user => user.Email != null &&
+                                                  user.Email.Equals(email, StringComparison.OrdinalIgnoreCase));
+        }
+
+        public async Task<User> AddUserAsync(User user)
+        {
+            return await Add(user);
+        }
+
+        public async Task UpdateUserAsync(User user)
+        {
+            await Update(user);
+        }
+
+        public async Task DeleteUserAsync(int id)
+        {
+            await Delete(id);
+        }
+
+        public async Task<IEnumerable<User>> GetAllProfessoresAsync()
+        {
+            return await _db.Set<User>().Where(u => u.Tipo == "professor").ToListAsync();
         }
     }
 }

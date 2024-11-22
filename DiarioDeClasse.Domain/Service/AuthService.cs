@@ -21,7 +21,7 @@ namespace DiarioDeClasse.Domain.Service
 
         public async Task<User?> AuthenticateAsync(string username, string password)
         {
-            var usuario = await _usuarioRepository.GetByUsernameAsync(username);
+            var usuario = await _usuarioRepository.GetByEmailAsync(username);
 
             if (usuario == null || !BCrypt.Net.BCrypt.Verify(password, usuario.Password))
             {
@@ -84,7 +84,7 @@ namespace DiarioDeClasse.Domain.Service
 
                 if(emailClaim != null)
                 {
-                    var user = await _usuarioRepository.GetByUsernameAsync(emailClaim.Value);
+                    var user = await _usuarioRepository.GetByEmailAsync(emailClaim.Value);
                     isAdm = (user?.Tipo ?? "") == "adm";
                 }
 

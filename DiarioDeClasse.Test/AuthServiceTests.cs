@@ -34,7 +34,7 @@ namespace DiarioDeClasse.Test
             var hashedPassword = BCrypt.Net.BCrypt.HashPassword(password);
 
             var user = new User { Email = "testuser@example.com", Password = hashedPassword };
-            _mockUserRepository.Setup(repo => repo.GetByUsernameAsync(username))
+            _mockUserRepository.Setup(repo => repo.GetByEmailAsync(username))
                 .ReturnsAsync(user);
 
             var result = await _authService.AuthenticateAsync(username, password);
@@ -47,7 +47,7 @@ namespace DiarioDeClasse.Test
         public async Task AuthenticateAsync_ShouldReturnNull_WhenUserDoesNotExist()
         {
             var username = "nonexistentuser";
-            _mockUserRepository.Setup(repo => repo.GetByUsernameAsync(username))
+            _mockUserRepository.Setup(repo => repo.GetByEmailAsync(username))
                 .ReturnsAsync((User)null);
 
             var result = await _authService.AuthenticateAsync(username, "password");
@@ -63,7 +63,7 @@ namespace DiarioDeClasse.Test
             var hashedPassword = BCrypt.Net.BCrypt.HashPassword("correctpassword");
 
             var user = new User { Email = "testuser@example.com", Password = hashedPassword };
-            _mockUserRepository.Setup(repo => repo.GetByUsernameAsync(username))
+            _mockUserRepository.Setup(repo => repo.GetByEmailAsync(username))
                 .ReturnsAsync(user);
 
             var result = await _authService.AuthenticateAsync(username, password);

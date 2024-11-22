@@ -1,14 +1,17 @@
 ﻿using DiarioDeClasse.Domain.Entity;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace DiarioDeClasse.Domain.Interface.Services
 {
     public interface IUserService
     {
-        public Task<User?> SaveUsuarioAsync(User usuario);
+        Task<IEnumerable<User>> GetAllAsync();
+        Task<IEnumerable<User>> GetAllProfessoresAsync();
+        Task<User?> GetByIdAsync(int id);
+        Task<User?> GetByEmailAsync(string email);
+        Task<User> AddAsync(User user);
+        Task UpdateAsync(int id, User user);
+        Task DeleteAsync(int id);
     }
 }
