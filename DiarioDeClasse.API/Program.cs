@@ -15,8 +15,8 @@ builder.Services.AddCors(options =>
     options.AddPolicy("AllowAll",
         builder => builder
             .AllowAnyOrigin()    // Permite qualquer origem
-            .AllowAnyMethod()    // Permite qualquer método HTTP (GET, POST, PUT, DELETE, etc.)
-            .AllowAnyHeader());  // Permite qualquer cabeçalho
+            .AllowAnyMethod()    // Permite qualquer mï¿½todo HTTP (GET, POST, PUT, DELETE, etc.)
+            .AllowAnyHeader());  // Permite qualquer cabeï¿½alho
 });
 
 builder.Services.AddControllers();
@@ -59,6 +59,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("AllowAll");
 
 app.UseAuthorization();
 
