@@ -19,7 +19,7 @@ namespace DiarioDeClasse.Domain.Entity
 
         [Required]
         [MaxLength(100)]
-        public string? Avaliacao { get; set; } // "Nota 1", "Nota 2", "Nota 3"
+        public string? Avaliacao { get; set; }
 
         [Required]
         public decimal ValorNota { get; set; }

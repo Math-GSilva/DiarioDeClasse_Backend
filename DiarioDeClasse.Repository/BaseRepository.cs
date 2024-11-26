@@ -65,7 +65,6 @@ namespace DiarioDeClasse.Repository
             }
             catch (Exception ex)
             {
-                // Log exception (ex) here if needed
                 throw new Exception("Error adding entity", ex);
             }
         }
@@ -82,7 +81,6 @@ namespace DiarioDeClasse.Repository
             }
             catch (Exception ex)
             {
-                // Log exception (ex) here if needed
                 throw new Exception("Error adding entities", ex);
             }
         }
@@ -98,7 +96,6 @@ namespace DiarioDeClasse.Repository
             }
             catch (Exception ex)
             {
-                // Log exception (ex) here if needed
                 throw new Exception("Error deleting entity", ex);
             }
         }
@@ -121,7 +118,6 @@ namespace DiarioDeClasse.Repository
             }
             catch (Exception ex)
             {
-                // Log exception (ex) here if needed
                 throw new Exception("Error updating entity", ex);
             }
         }

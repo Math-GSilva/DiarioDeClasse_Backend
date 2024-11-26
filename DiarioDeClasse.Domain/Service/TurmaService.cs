@@ -42,7 +42,7 @@ namespace DiarioDeClasse.Domain.Service
             existingTurma.AnoLetivo = turma.AnoLetivo;
             existingTurma.ProfessorId = turma.ProfessorId;
 
-            await _repository.Update(existingTurma);
+            await _repository.UpdateTurmaAsync(existingTurma);
             await _repository.SaveChangesAsync();
         }
 

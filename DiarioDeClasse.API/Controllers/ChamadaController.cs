@@ -15,7 +15,6 @@ namespace DiarioDeClasse.API.Controllers
             _service = service;
         }
 
-        // GET: api/Chamada/Aula/{aulaId}
         [HttpGet("Aula/{aulaId:int}")]
         public async Task<IActionResult> GetByAulaId(int aulaId)
         {
@@ -23,7 +22,6 @@ namespace DiarioDeClasse.API.Controllers
             return Ok(chamadas);
         }
 
-        // GET: api/Chamada/Aluno/{alunoId}
         [HttpGet("Aluno/{alunoId:int}")]
         public async Task<IActionResult> GetByAlunoId(int alunoId)
         {
@@ -31,7 +29,6 @@ namespace DiarioDeClasse.API.Controllers
             return Ok(chamadas);
         }
 
-        // POST: api/Chamada
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Chamada chamada)
         {
@@ -42,7 +39,6 @@ namespace DiarioDeClasse.API.Controllers
             return CreatedAtAction(nameof(GetByAulaId), new { aulaId = chamada.AulaId }, createdChamada);
         }
 
-        // PUT: api/Chamada/{id}
         [HttpPut("{id:int}")]
         public async Task<IActionResult> Update(int id, [FromBody] Chamada chamada)
         {
@@ -60,7 +56,6 @@ namespace DiarioDeClasse.API.Controllers
             }
         }
 
-        // DELETE: api/Chamada/{id}
         [HttpDelete("{id:int}")]
         public async Task<IActionResult> Delete(int id)
         {
