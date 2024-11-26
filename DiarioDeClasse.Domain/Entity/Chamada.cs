@@ -18,7 +18,7 @@ namespace DiarioDeClasse.Domain.Entity
         public int AlunoId { get; set; }
 
         [Required]
-        public string StatusPresenca { get; set; } // "Presente", "Ausente", "Justificado"
+        public string StatusPresenca { get; set; }
 
         [MaxLength(500)]
         public string? Observacao { get; set; }

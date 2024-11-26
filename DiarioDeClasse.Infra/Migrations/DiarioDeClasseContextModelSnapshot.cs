@@ -168,32 +168,6 @@ namespace DiarioDeClasse.Infra.Migrations
                     b.ToTable("Notas", (string)null);
                 });
 
-            modelBuilder.Entity("DiarioDeClasse.Domain.Entity.Professor", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Disciplina")
-                        .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<string>("Nome")
-                        .IsRequired()
-                        .HasMaxLength(150)
-                        .HasColumnType("nvarchar(150)");
-
-                    b.Property<int>("UsuarioId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Professores", (string)null);
-                });
-
             modelBuilder.Entity("DiarioDeClasse.Domain.Entity.Turma", b =>
                 {
                     b.Property<int>("Id")
@@ -227,6 +201,9 @@ namespace DiarioDeClasse.Infra.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("DataNascimento")
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -307,7 +284,7 @@ namespace DiarioDeClasse.Infra.Migrations
 
             modelBuilder.Entity("DiarioDeClasse.Domain.Entity.Turma", b =>
                 {
-                    b.HasOne("DiarioDeClasse.Domain.Entity.Professor", null)
+                    b.HasOne("DiarioDeClasse.Domain.Entity.User", null)
                         .WithMany()
                         .HasForeignKey("ProfessorId")
                         .OnDelete(DeleteBehavior.Cascade)

@@ -14,9 +14,9 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll",
         builder => builder
-            .AllowAnyOrigin()    // Permite qualquer origem
-            .AllowAnyMethod()    // Permite qualquer m�todo HTTP (GET, POST, PUT, DELETE, etc.)
-            .AllowAnyHeader());  // Permite qualquer cabe�alho
+            .AllowAnyOrigin()
+            .AllowAnyMethod()
+            .AllowAnyHeader());
 });
 
 builder.Services.AddControllers();
@@ -27,6 +27,31 @@ builder.Services.AddDbContext<DiarioDeClasseContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer")));
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IUserService, UserService>();
+
+builder.Services.AddScoped<ITurmaRepository, TurmaRepository>();
+builder.Services.AddScoped<ITurmaService, TurmaService>();
+
+
+builder.Services.AddScoped<INotaRepository, NotaRepository>();
+builder.Services.AddScoped<INotaService, NotaService>();
+
+
+builder.Services.AddScoped<IChamadaRepository, ChamadaRepository>();
+builder.Services.AddScoped<IChamadaService, ChamadaService>();
+
+
+builder.Services.AddScoped<IAulaRepository, AulaRepository>();
+builder.Services.AddScoped<IAulaService, AulaService>();
+
+
+builder.Services.AddScoped<IAlunoTurmaRepository, AlunoTurmaRepository>();
+builder.Services.AddScoped<IAlunoTurmaService, AlunoTurmaService>();
+
+
+builder.Services.AddScoped<IAlunoRepository, AlunoRepository>();
+builder.Services.AddScoped<IAlunoService, AlunoService>();
+
+
 builder.Services.AddScoped<AuthService>();
 
 builder.Services.AddAuthentication(options =>

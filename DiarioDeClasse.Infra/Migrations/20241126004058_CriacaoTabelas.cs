@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace DiarioDeClasse.Infra.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class CriacaoTabelas : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -27,21 +27,6 @@ namespace DiarioDeClasse.Infra.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Professores",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("SqlServer:Identity", "1, 1"),
-                    Nome = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
-                    Disciplina = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
-                    UsuarioId = table.Column<int>(type: "int", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Professores", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Usuarios",
                 columns: table => new
                 {
@@ -49,6 +34,7 @@ namespace DiarioDeClasse.Infra.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    DataNascimento = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Tipo = table.Column<string>(type: "nvarchar(max)", nullable: false)
                 },
@@ -71,9 +57,9 @@ namespace DiarioDeClasse.Infra.Migrations
                 {
                     table.PrimaryKey("PK_Turmas", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Turmas_Professores_ProfessorId",
+                        name: "FK_Turmas_Usuarios_ProfessorId",
                         column: x => x.ProfessorId,
-                        principalTable: "Professores",
+                        principalTable: "Usuarios",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -238,9 +224,6 @@ namespace DiarioDeClasse.Infra.Migrations
                 name: "Notas");
 
             migrationBuilder.DropTable(
-                name: "Usuarios");
-
-            migrationBuilder.DropTable(
                 name: "Aulas");
 
             migrationBuilder.DropTable(
@@ -250,7 +233,7 @@ namespace DiarioDeClasse.Infra.Migrations
                 name: "Turmas");
 
             migrationBuilder.DropTable(
-                name: "Professores");
+                name: "Usuarios");
         }
     }
 }
